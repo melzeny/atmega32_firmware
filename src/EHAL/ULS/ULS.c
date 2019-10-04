@@ -47,7 +47,7 @@ uint16 ULS_getDistance(void)
 	uint32 EchoHiLevel_Time_us;
 	EchoHiLevel_Time_us = TIMER1_getHiLevelTime();
 	/* Calculate Distance */
-	Distance_cm = ((EchoHiLevel_Time_us * ULS_WAVE_SPEED_M_PER_S ) * ( ULS_M_TO_Cm / ULS_S_TO_uS)) /2;
+	Distance_cm = ( ( EchoHiLevel_Time_us * ULS_WAVE_SPEED_M_PER_S * ULS_M_TO_Cm ) / ULS_S_TO_uS ) /2;
 
 	return Distance_cm;
 }
