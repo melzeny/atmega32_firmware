@@ -17,6 +17,8 @@
 #include <util/delay.h>
 
 #define ULS_WAVE_SPEED_M_PER_S				340
+#define ULS_S_TO_uS							1000000
+#define ULS_M_TO_Cm							100
 
 static void ULS_Trigger_task(void)
 {
@@ -44,8 +46,8 @@ uint16 ULS_getDistance(void)
 	uint16 Distance_cm;
 	uint32 EchoHiLevel_Time_us;
 	EchoHiLevel_Time_us = TIMER1_getHiLevelTime();
-	/* TODO: Correct Distance Equation */
-	Distance_cm = ((EchoHiLevel_Time_us * ULS_WAVE_SPEED_M_PER_S ) / 10000)/2;
+	/* Calculate Distance */
+	Distance_cm = ((EchoHiLevel_Time_us * ULS_WAVE_SPEED_M_PER_S ) * ( ULS_M_TO_Cm / ULS_S_TO_uS)) /2;
 
 	return Distance_cm;
 }
